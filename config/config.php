@@ -1,17 +1,20 @@
 <?php
-// Database configuration (using JSON files for simplicity in WebContainer)
+// Environment Configuration
+require_once __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Database configuration
 define('DATA_DIR', __DIR__ . '/../data/');
-
-// OpenAI API Configuration
-define('OPENAI_API_KEY', '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');
 define('OPENAI_API_URL', 'https://api.openai.com/v1/chat/completions');
+define('OPENAI_API_KEY', $_ENV['OPENAI_API_KEY']);
 
-// Ensure data directory exists
+// Ensure data directory exists with proper permissions
 if (!file_exists(DATA_DIR)) {
-    mkdir(DATA_DIR, 0755, true);
+    mkdir(DATA_DIR, 0750, true);
 }
 
-// Initialize data files if they don't exist
+// Initialize data files with proper schema
 $data_files = [
     'users.json' => [],
     'patients.json' => [],
@@ -41,25 +44,29 @@ foreach ($data_files as $file => $default_data) {
     $file_path = DATA_DIR . $file;
     if (!file_exists($file_path)) {
         file_put_contents($file_path, json_encode($default_data, JSON_PRETTY_PRINT));
+        chmod($file_path, 0640);
     }
 }
 
-// Helper functions for data operations
-function readData($filename) {
-    $file_path = DATA_DIR . $filename;
-    if (file_exists($file_path)) {
-        return json_decode(file_get_contents($file_path), true);
+// Data Access Layer
+class DataRepository {
+    public static function readData(string $filename): array {
+        $file_path = DATA_DIR . $filename;
+        if (!file_exists($file_path)) {
+            throw new RuntimeException("Data file not found: {$filename}");
+        }
+        return json_decode(file_get_contents($file_path), true) ?: [];
     }
-    return [];
-}
 
-function writeData($filename, $data) {
-    $file_path = DATA_DIR . $filename;
-    return file_put_contents($file_path, json_encode($data, JSON_PRETTY_PRINT));
-}
+    public static function writeData(string $filename, array $data): void {
+        $file_path = DATA_DIR . $filename;
+        if (file_put_contents($file_path, json_encode($data, JSON_PRETTY_PRINT)) === false) {
+            throw new RuntimeException("Failed to write data to: {$filename}");
+        }
+    }
 
-function getNextId($data) {
-    if (empty($data)) return 1;
-    return max(array_column($data, 'id')) + 1;
+    public static function getNextId(array $data): int {
+        return empty($data) ? 1 : (max(array_column($data, 'id')) + 1);
+    }
 }
 ?>
