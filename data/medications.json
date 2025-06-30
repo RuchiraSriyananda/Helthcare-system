@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Aspirin",
+        "description": "Pain reliever and anti-inflammatory",
+        "manufacturer": "Bayer"
+    },
+    {
+        "id": 2,
+        "name": "Amoxicillin",
+        "description": "Antibiotic",
+        "manufacturer": "GlaxoSmithKline"
+    },
+    {
+        "id": 3,
+        "name": "Lisinopril",
+        "description": "ACE inhibitor for blood pressure",
+        "manufacturer": "Merck"
+    },
+    {
+        "id": 4,
+        "name": "Metformin",
+        "description": "Diabetes medication",
+        "manufacturer": "Bristol-Myers Squibb"
+    },
+    {
+        "id": 5,
+        "name": "Ibuprofen",
+        "description": "NSAID pain reliever",
+        "manufacturer": "Advil"
+    }
+]
