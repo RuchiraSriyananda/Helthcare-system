@@ -1,0 +1,429 @@
+/* Responsive Design for Healthcare Management System */
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 1.5rem;
+    }
+    
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .content-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-row.three-cols {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .form-row.three-cols .form-group:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Mobile Styles (768px and below) */
+@media (max-width: 768px) {
+    /* Sidebar becomes overlay on mobile */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1001;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+    
+    .sidebar-overlay.show {
+        display: block;
+    }
+    
+    /* Main content adjustments */
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    
+    /* Add mobile menu button */
+    .mobile-menu-btn {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1002;
+        background: var(--primary-color);
+        color: var(--white);
+        border: none;
+        padding: 0.5rem;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        box-shadow: var(--shadow-md);
+    }
+    
+    /* Content header mobile */
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-top: 3rem; /* Account for mobile menu button */
+    }
+    
+    .content-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    /* Stats cards mobile */
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+    
+    .stat-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Form adjustments */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .form-container {
+        padding: 1rem;
+        margin: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .form-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .form-section h2 {
+        font-size: 1.125rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    /* Card adjustments */
+    .card {
+        border-radius: var(--border-radius);
+        margin: 0 -1rem;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .card-header,
+    .card-content {
+        padding: 1rem;
+    }
+    
+    /* Table responsive */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table {
+        min-width: 600px;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.5rem;
+        font-size: 0.8125rem;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    /* Login page mobile */
+    .login-container {
+        padding: 1rem;
+    }
+    
+    .login-card {
+        padding: 1.5rem;
+    }
+    
+    /* Button adjustments */
+    .btn-group-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    .btn-group-mobile .btn {
+        width: 100%;
+    }
+    
+    /* Search and filter mobile */
+    .search-filters {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .search-filters .form-group {
+        margin-bottom: 0;
+    }
+    
+    /* Dashboard mobile specific */
+    .dashboard-grid {
+        gap: 1.5rem;
+    }
+    
+    .activity-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .activity-filters .btn {
+        flex: 1;
+        min-width: auto;
+        font-size: 0.75rem;
+        padding: 0.375rem 0.5rem;
+    }
+    
+    .quick-stats {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .quick-stat {
+        padding: 1rem;
+        background-color: var(--gray-50);
+        border-radius: var(--border-radius);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .appointment-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .appointment-item {
+        padding: 0.75rem;
+        border-bottom: 1px solid var(--gray-200);
+        font-size: 0.8125rem;
+    }
+    
+    .appointment-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Small mobile (480px and below) */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 0.75rem;
+    }
+    
+    .content-header {
+        padding-top: 3.5rem;
+    }
+    
+    .content-header h1 {
+        font-size: 1.25rem;
+    }
+    
+    .card {
+        margin: 0 -0.75rem;
+    }
+    
+    .form-container {
+        padding: 0.75rem;
+    }
+    
+    .login-container {
+        padding: 0.75rem;
+    }
+    
+    .login-card {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.8125rem;
+    }
+    
+    .btn-small {
+        padding: 0.375rem 0.625rem;
+        font-size: 0.75rem;
+    }
+    
+    input, select, textarea {
+        padding: 0.5rem 0.625rem;
+        font-size: 0.8125rem;
+    }
+    
+    .stat-card {
+        padding: 0.75rem;
+    }
+    
+    .stat-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .modal-content {
+        padding: 1rem;
+    }
+}
+
+/* Large screens (1200px and above) */
+@media (min-width: 1200px) {
+    .sidebar {
+        width: 280px;
+    }
+    
+    .main-content {
+        margin-left: 280px;
+        padding: 2.5rem;
+    }
+    
+    .stats-row {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .form-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .content-row {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .mobile-menu-btn,
+    .header-actions,
+    .form-actions,
+    .btn {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 0;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid var(--gray-300);
+        page-break-inside: avoid;
+    }
+    
+    .form-section {
+        page-break-inside: avoid;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .table {
+        font-size: 12px;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.25rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --gray-100: #E0E0E0;
+        --gray-200: #CCCCCC;
+        --gray-300: #B0B0B0;
+        --border-color: #000000;
+    }
+    
+    .card,
+    input,
+    select,
+    textarea {
+        border-width: 2px;
+    }
+    
+    .btn {
+        border-width: 2px;
+        font-weight: 600;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .sidebar {
+        transition: none;
+    }
+    
+    .modal {
+        animation: none;
+    }
+    
+    .modal-content {
+        animation: none;
+    }
+}
