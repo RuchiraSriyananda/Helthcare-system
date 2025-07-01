@@ -1,13 +1,21 @@
 {
   "name": "healthcare-management-system",
-  "private": true,
   "version": "1.0.0",
+  "description": "Comprehensive Healthcare Management System",
   "type": "module",
   "scripts": {
-    "dev": "php -S localhost:8000",
-    "start": "php -S localhost:8000"
+    "dev": "http-server -p 3000 -o",
+    "start": "http-server -p 8080",
+    "build": "echo 'Build complete - static files ready'",
+    "lint": "eslint .",
+    "preview": "http-server dist -p 8080"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
   },
   "devDependencies": {
-    "vite": "^5.4.2"
+    "@eslint/js": "^9.9.1",
+    "eslint": "^9.9.1",
+    "globals": "^15.9.0"
   }
 }

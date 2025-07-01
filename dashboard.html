@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HealthCare Management System</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                <span>HealthCare MS</span>
+            </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html" class="active"><span class="icon">📊</span> Dashboard</a></li>
+            <li><a href="patients/list.html"><span class="icon">👥</span> Patients</a></li>
+            <li><a href="doctors/manage.html"><span class="icon">👨‍⚕️</span> Doctors</a></li>
+            <li><a href="appointments/manage.html"><span class="icon">📅</span> Appointments</a></li>
+            <li><a href="records/manage.html"><span class="icon">📋</span> Medical Records</a></li>
+            <li><a href="prescriptions/manage.html"><span class="icon">💊</span> Prescriptions</a></li>
+            <li><a href="billing/manage.html"><span class="icon">💰</span> Billing</a></li>
+            <li><a href="inventory/manage.html"><span class="icon">📦</span> Inventory</a></li>
+            <li><a href="reports/dashboard.html"><span class="icon">📈</span> Reports</a></li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-details">
+                    <span class="user-name" id="userName">Dr. Smith</span>
+                    <span class="user-role" id="userRole">Administrator</span>
+                </div>
+            </div>
+            <button class="btn btn-outline btn-small" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Dashboard</h1>
+            <div class="header-actions">
+                <span class="current-date" id="currentDate"></span>
+                <button class="btn btn-primary" onclick="showQuickActions()">Quick Actions</button>
+            </div>
+        </header>
+        
+        <div class="dashboard-grid">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="totalPatients">1,234</h3>
+                        <p>Total Patients</p>
+                        <span class="stat-change positive">+12% this month</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <h3 id="todayAppointments">28</h3>
+                        <p>Today's Appointments</p>
+                        <span class="stat-change">3 pending</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍⚕️</div>
+                    <div class="stat-content">
+                        <h3 id="activeDoctors">15</h3>
+                        <p>Active Doctors</p>
+                        <span class="stat-change">All available</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 id="monthlyRevenue">$45,280</h3>
+                        <p>Monthly Revenue</p>
+                        <span class="stat-change positive">+8% vs last month</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-row">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Recent Appointments</h2>
+                        <a href="appointments/manage.html" class="btn btn-outline btn-small">View All</a>
+                    </div>
+                    <div class="card-content">
+                        <div class="appointment-list" id="recentAppointments">
+                            <!-- Appointments will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Quick Stats</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="quick-stats">
+                            <div class="quick-stat">
+                                <span class="label">Pending Prescriptions</span>
+                                <span class="value">12</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="label">Low Stock Items</span>
+                                <span class="value warning">5</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="label">Outstanding Payments</span>
+                                <span class="value">$8,450</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="label">New Patients (Week)</span>
+                                <span class="value">23</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-row">
+                <div class="card full-width">
+                    <div class="card-header">
+                        <h2>System Activity</h2>
+                        <div class="activity-filters">
+                            <button class="btn btn-small active" onclick="filterActivity('all')">All</button>
+                            <button class="btn btn-small" onclick="filterActivity('patients')">Patients</button>
+                            <button class="btn btn-small" onclick="filterActivity('appointments')">Appointments</button>
+                            <button class="btn btn-small" onclick="filterActivity('billing')">Billing</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="activity-feed" id="activityFeed">
+                            <!-- Activity items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/dashboard.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
